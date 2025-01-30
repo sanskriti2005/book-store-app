@@ -22,6 +22,8 @@ export default function Login(){
         console.log(formData);
         loginFunc(formData);
     }
+    
+    
     return(
         <form onSubmit={handleSubmit}>
             <input type="text" name="username" placeholder="Enter username" value={formData.username} onChange={handleChange}/>

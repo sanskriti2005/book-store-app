@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
   const [login, setLogin] = useState(false);
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(null);
   const navigate = useNavigate()
   const loginFunc = ({ username, password }) => {
     axios
@@ -33,7 +33,10 @@ export default function AuthContextProvider({ children }) {
     setLogin(false)
     navigate('/login')
   }
-
+//   const tempToken = localStorage.getItem('token')
+//   if(tempToken){
+//     setLogin(true)
+//   }
   return (
     <AuthContext.Provider value={{ login, loginFunc, token, logoutFunc }}>
       {children}
