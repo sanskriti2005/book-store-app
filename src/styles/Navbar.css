@@ -1,0 +1,17 @@
+nav{
+    height: 2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link{
+    padding: 0.4rem;
+    border-radius: 10px;
+}
+
+
+.active{
+    background-color: rgb(128, 126, 126);
+}
