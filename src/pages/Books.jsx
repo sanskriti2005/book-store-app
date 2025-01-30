@@ -60,7 +60,7 @@ export default function Books() {
 
   };
   const handleAddNewBookInput = () => {
-    
+
   };
   return (
     <div>
@@ -102,7 +102,12 @@ export default function Books() {
             );
           })}
       </div>
-      <form onSubmit={handleAddNewBook}></form>
+      <form onSubmit={handleAddNewBook}>
+        <input type="text" placeholder="Enter book name" />
+        <input type="text" placeholder="Enter book price" />
+        <input type="text" placeholder="Enter book category" />
+        <input type="text" placeholder="Enter Book Author" />
+      </form>
     </div>
   );
 }
