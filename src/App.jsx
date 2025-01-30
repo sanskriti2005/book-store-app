@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import Books from "./pages/Books";
 import Login from "./pages/Login";
 import PrivateRoute from "./components/PrivateRoute";
+import BookDetails from "./pages/Book.Details";
 
 function App() {
   return (
@@ -18,12 +19,13 @@ function App() {
         <Route
           path="/books"
           element={
-            <PrivateRoute>
+            // <PrivateRoute>
               <Books />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/books/:id" element={<BookDetails/>}/>
       </Routes>
     </>
   );
