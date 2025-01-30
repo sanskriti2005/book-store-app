@@ -1,5 +1,6 @@
 
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { AuthContext } from "../context/AuthContextProvider";
 
 
 export default function Login(){
@@ -7,7 +8,8 @@ export default function Login(){
         username: '',
         password: ''
     }
-    const [formData, setFormData] = useState(initVals)
+    const [formData, setFormData] = useState(initVals);
+    const { loginFunc } = useContext(AuthContext);
 
 
     const handleChange = (e) => {
@@ -18,7 +20,7 @@ export default function Login(){
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(formData);
-        
+        loginFunc(formData);
     }
     return(
         <form onSubmit={handleSubmit}>

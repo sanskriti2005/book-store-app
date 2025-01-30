@@ -1,19 +1,42 @@
-import { createContext, useState } from "react"
-import axios from 'axios'
+import { createContext, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const AuthContext = createContext()
+export const AuthContext = createContext();
 
-export default function AuthContextProvider({children}){
-    const [login, setLogin] = useState(false)
+export default function AuthContextProvider({ children }) {
+  const [login, setLogin] = useState(false);
+  const [token, setToken] = useState('');
+  const navigate = useNavigate()
+  const loginFunc = ({ username, password }) => {
+    axios
+      .post("https://discovered-snapdragon-zinnia.glitch.me/login", {
+        username,
+        password,
+      })
+      .then((res) => {
+        setToken(res.data.token);
+        setLogin(true);
+        localStorage.setItem("token", res.data.token)
+      })
+      .catch((res) => {
+        console.log(res)
+        alert(res.message)
+      })
+      .finally(() => {
+        navigate('/')
+      })
+  };
 
-    const loginFunc = ({username, password}) => {
-        axios.post('https://discovered-snapdragon-zinnia.glitch.me/', {username, password})
-        .then(res => console.log(res))
-    }
+  const logoutFunc = () => {
+    localStorage.removeItem('token');
+    setLogin(false)
+    navigate('/login')
+  }
 
-    return(
-        <AuthContext.Provider value={{login, loginFunc}}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider value={{ login, loginFunc, token, logoutFunc }}>
+      {children}
+    </AuthContext.Provider>
+  );
 }
