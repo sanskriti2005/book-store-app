@@ -19,9 +19,9 @@ function App() {
         <Route
           path="/books"
           element={
-            // <PrivateRoute>
+            <PrivateRoute>
               <Books />
-            // </PrivateRoute>
+            </PrivateRoute>
           }
         />
         <Route path="/login" element={<Login />} />
